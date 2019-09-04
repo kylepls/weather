@@ -3,12 +3,11 @@
     "description": "Shows some weather details",
     "main": "index.js",
     "scripts": {
-        "dev": "ts-node-dev -C ttypescript --respawn --transpileOnly ./src/index.ts",
-        "start": "tsc && node ./target/App.js",
+        "dev": "npx ts-node-dev -C ttypescript --respawn --transpileOnly ./src/index.ts",
+        "start": "npx tsc && node ./target/App.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "KylePls",
-    "license": "ISC",
     "dependencies": {
         "express": "^4.16.4",
         "module-alias": "^2.2.0",
