@@ -1,0 +1,32 @@
+{
+    "animation": {
+        "duration": 500,
+        "startup": true
+    },
+    "annotations": {
+        "stemColor": "none",
+        "highContrast": false,
+        "alwaysOutside": true
+    },
+    "tooltip": {
+        "trigger": "none"
+    },
+    "axisTitlesPosition": "none",
+    "curveType": "function",
+    "vAxis": {
+        "gridlines": {
+            "color": "transparent"
+        },
+        "textPosition": "none"
+    },
+    "hAxis": {
+        "gridlines": {
+            "count": 2,
+            "color": "transparent"
+        },
+        "format": "h a"
+    },
+    "legend": {
+        "position": "none"
+    }
+}

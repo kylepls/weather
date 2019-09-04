@@ -1,0 +1,9 @@
+.dataElements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dataElements img, .dataElements object {
+    max-height: 6vh;
+}

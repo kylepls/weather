@@ -1,0 +1,15 @@
+.predictionDays {
+    text-align: center;
+}
+
+.tempString {
+    display: block;
+}
+
+.predictionDay img {
+    height: 6vh;
+}
+
+.dayTempMax {
+    font-weight: bold;
+}

@@ -1,0 +1,37 @@
+{
+    "name": "weather",
+    "description": "Shows some weather details",
+    "main": "index.js",
+    "scripts": {
+        "dev": "ts-node-dev -C ttypescript --respawn --transpileOnly ./src/index.ts",
+        "start": "tsc && node ./target/App.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "KylePls",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.4",
+        "module-alias": "^2.2.0",
+        "moment": "^2.24.0",
+        "node-cron": "^2.0.3",
+        "request": "^2.88.0",
+        "suncalc2": "^1.8.1",
+        "zipcodes": "^8.0.0"
+    },
+    "devDependencies": {
+        "@types/zipcodes": "^6.1.0",
+        "@types/express": "^4.16.1",
+        "@types/moment": "^2.13.0",
+        "@types/node": "^11.13.7",
+        "@types/node-cron": "^2.0.2",
+        "@types/request": "^2.48.1",
+        "@zerollup/ts-transform-paths": "^1.7.1",
+        "ts-node-dev": "^1.0.0-pre.32",
+        "ts-transform-paths": "^2.0.0",
+        "ttypescript": "^1.5.6",
+        "typescript": "^3.4.5"
+    },
+    "_moduleAliases": {
+        "~": "./src"
+    }
+}

@@ -1,0 +1,76 @@
+html {
+    height: 100%;
+    background-color: #464646;
+}
+
+.tile {
+    background-color: red;
+}
+
+.main-container {
+    margin-top: 5vh;
+}
+
+.center {
+    float: none !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box {
+    margin-bottom: 3vh;
+    box-shadow: 0px 0px 0px 1px black;
+}
+
+.header {
+    height: 25vh;
+}
+
+.hspace {
+    float: left;
+    width: 3vh;
+    height:1px;
+}
+
+.vspace {
+    height: 3vh;
+    width: 100%;
+}
+
+.left-section {
+    width: 70%;
+    float: left;
+}
+
+.right-section {
+    width: calc(100% - 70% - 3vh);
+    height: calc(100vh - 5vh - 25vh - 3vh - 5vh);
+    float: left;
+    outline: 1px solid;
+}
+
+.predictions {
+    height: 37vh;
+    outline: 1px solid;
+}
+
+.infoPanel {
+    outline: 1px solid;
+    height: calc(100vh - 3vh - 3vh - 5vh - 37vh - 25vh - 5vh);
+    overflow: hidden;
+}
+
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#light {
+    height: 30%;
+}
+
+#rockets {
+    height: 70%;
+}
+

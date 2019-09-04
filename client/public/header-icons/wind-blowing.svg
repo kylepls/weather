@@ -1,0 +1,49 @@
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 32 32">
+  <style>
+  path {
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: blow;
+    animation-duration: 2s;
+    stroke-dasharray: 25 25;
+  }
+
+  @keyframes blow {
+    0% {
+      stroke-dashoffset: 0;
+    }
+
+    100% {
+      stroke-dashoffset: -50;
+      
+    }
+  }
+  </style>
+  <g
+     fill="none"
+     id="Windy"
+     stroke-linecap="round"
+     stroke-width="1">
+    <g
+       transform="translate(3.000000, 3.000000)"
+       stroke-width="2"
+       stroke="#979797">
+      <g transform="translate(2.000000, 0.000000)">
+        <g transform="translate(5.000000, 0.000000)" />
+        <path
+           d="M 0,10 H 10 C 12.761424,10 15,7.7614237 15,5 15,2.2385763 12.761424,0 10,0 7.2385762,0 5,2.2385763 5,5" />
+      </g>
+      <g transform="translate(3.000000, 17.000000)">
+        <path
+           d="m 0,1 h 14 c 1.656854,0 3,1.3431457 3,3 0,1.6568543 -1.343146,3 -3,3 -1.656854,0 -3,-1.3431457 -3,-3" />
+      </g>
+      <g transform="translate(0.000000, 4.000000)">
+        <path d="M 0,10 H 21 C 23.761424,10 26,7.7614237 26,5 26,2.2385763 23.761424,0 21,0 20.703694,0 20.413408,0.02577426 20.131262,0.07520311" />
+      </g>
+    </g>
+  </g>
+</svg>

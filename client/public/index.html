@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="%PUBLIC_URL%/index.css" />
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div class="container main-container">
+        <div class="row box header">
+            <div id="header" class="tile"></div>
+        </div>
+        <div class="row">
+            <div class="left-section">
+                <div class="predictions tile">
+                    <div id="forecast"></div>
+                </div>
+                <div class="vspace"></div>
+                <div class="infoPanel tile">
+                    <div id="info"></div>
+                </div>
+            </div>
+            <div class="hspace"></div>
+            <div class="right-section tile">
+                <div id="light" class="flexCenter"></div>
+                <div id="right-items" class="flexCenter"></div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
