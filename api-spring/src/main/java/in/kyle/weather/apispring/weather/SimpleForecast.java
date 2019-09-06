@@ -3,7 +3,7 @@ package in.kyle.weather.apispring.weather;
 import lombok.Value;
 
 @Value
-public class Forecast {
+public class SimpleForecast {
 
     TemperatureData temperatureData;
     double precipitationChance;
