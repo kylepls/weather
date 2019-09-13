@@ -1,6 +1,6 @@
 package in.kyle.weather.apispring.weather;
 
-public interface WeatherService {
+public interface Weather {
 
     WeatherData getForecast(Coordinate coordinate);
 

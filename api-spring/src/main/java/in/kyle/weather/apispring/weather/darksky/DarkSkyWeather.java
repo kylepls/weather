@@ -1,9 +1,6 @@
 package in.kyle.weather.apispring.weather.darksky;
 
-import in.kyle.weather.apispring.weather.Coordinate;
-import in.kyle.weather.apispring.weather.WeatherData;
-import in.kyle.weather.apispring.weather.WeatherDataBuilder;
-import in.kyle.weather.apispring.weather.WeatherService;
+import in.kyle.weather.apispring.weather.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -15,7 +12,7 @@ import java.time.Instant;
 
 @Service
 @RequiredArgsConstructor
-public class DarkSkyWeatherService implements WeatherService {
+public class DarkSkyWeather implements Weather {
 
     private final DarkSkyJacksonClient client = new DarkSkyJacksonClient();
     private final DarkSkyProperties properties;
@@ -31,7 +28,7 @@ public class DarkSkyWeatherService implements WeatherService {
                 .extendHourly()
                 .location(coordinatesToGeoCoordinates(coordinate))
                 .build();
-        tk.plogitech.darksky.forecast.model.Forecast forecast = client.forecast(request);
+        var forecast = client.forecast(request);
         return createWeatherData(forecast);
     }
 
@@ -44,14 +41,20 @@ public class DarkSkyWeatherService implements WeatherService {
     private WeatherData createWeatherData(tk.plogitech.darksky.forecast.model.Forecast forecast){
         DailyDataPoint today = forecast.getDaily().getData().get(0);
         Currently currently = forecast.getCurrently();
-        return new WeatherDataBuilder()
-                .temperature(currently.getTemperature())
-                .apparentTemperature(currently.getApparentTemperature())
-                .precipitation(today.getPrecipProbability())
-                .high(today.getTemperatureHigh())
-                .low(today.getTemperatureLow())
-                .humidity(today.getHumidity())
-                .outside(currently.getSummary())
+        return new WeatherData(CurrentData.builder()
+                .temperature(createStatus(currently, today))
+                .humidity(currently.getHumidity())
+                .outsideStatus(today.getSummary())
+                .precipitationChance(today.getPrecipProbability())
+                .build());
+    }
+
+    private TemperatureStatus createStatus(Currently currently, DailyDataPoint dataPoint){
+        return TemperatureStatus.builder()
+                .apparent(currently.getApparentTemperature())
+                .current(currently.getTemperature())
+                .high(dataPoint.getTemperatureHigh())
+                .low(dataPoint.getTemperatureLow())
                 .build();
     }
 }

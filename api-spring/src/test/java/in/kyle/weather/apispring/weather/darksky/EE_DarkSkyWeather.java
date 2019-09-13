@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EE_DarkSkyWeatherService {
+class EE_DarkSkyWeather {
 
     @Autowired
-    DarkSkyWeatherService weather;
+    DarkSkyWeather weather;
 
     @Test
     void getForecast() {
