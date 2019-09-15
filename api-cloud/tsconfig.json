@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "baseUrl": "./src",
+        "baseUrl": ".",
         "sourceMap": true,
         "target": "es6",
         "module": "commonjs",
@@ -12,14 +12,11 @@
         "strict": true,
         "declaration": true,
         "outDir": "target",
-        "plugins": [
-            {
-                "transform": "@zerollup/ts-transform-paths",
-                "exclude": ["*"]
-            }
-        ],
         "paths": {
-            "~/*": ["*"]
+            "*": [
+                "*",
+                "src/*"
+            ]
         }
     },
     "include": [

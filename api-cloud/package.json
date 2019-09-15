@@ -1,0 +1,26 @@
+{
+  "name": "api-cloud",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/preset-typescript": "^7.6.0",
+    "aws-lambda": "^0.1.2",
+    "dark-sky": "^1.1.5",
+    "netlify-lambda": "^1.6.3",
+    "request": "^2.88.0",
+    "suncalc2": "^1.8.1"
+  },
+  "scripts": {
+    "build": "netlify-lambda build src",
+    "start": "netlify-lambda serve src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.31",
+    "@types/node": "^12.7.5",
+    "@types/request": "^2.48.3",
+    "ttypescript": "^1.5.6",
+    "typescript": "^3.6.3"
+  }
+}
