@@ -17,6 +17,7 @@ import tk.plogitech.darksky.forecast.ForecastRequestBuilder;
 import tk.plogitech.darksky.forecast.GeoCoordinates;
 import tk.plogitech.darksky.forecast.model.Currently;
 import tk.plogitech.darksky.forecast.model.DailyDataPoint;
+import tk.plogitech.darksky.forecast.model.Forecast;
 import tk.plogitech.darksky.forecast.model.Latitude;
 import tk.plogitech.darksky.forecast.model.Longitude;
 
@@ -30,8 +31,8 @@ public class DarkSkyWeather implements Weather {
     @Override
     @SneakyThrows
     public WeatherReport getForecast(Coordinate coordinate) {
-        var units = ForecastRequestBuilder.Units.us;
-        var language = ForecastRequestBuilder.Language.en;
+        ForecastRequestBuilder.Units units = ForecastRequestBuilder.Units.us;
+        ForecastRequestBuilder.Language language = ForecastRequestBuilder.Language.en;
         ForecastRequest request = new ForecastRequestBuilder().key(properties.getKey())
                 .time(Instant.now())
                 .language(language)
@@ -39,7 +40,7 @@ public class DarkSkyWeather implements Weather {
                 .extendHourly()
                 .location(toGeoCoordinates(coordinate))
                 .build();
-        var forecast = client.forecast(request);
+        Forecast forecast = client.forecast(request);
         return makeWeatherData(forecast);
     }
     

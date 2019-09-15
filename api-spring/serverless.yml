@@ -1,0 +1,25 @@
+org: weatherapp
+app: weather-app
+service: weather-api
+
+provider:
+  name: aws
+  runtime: java8
+  region: us-east-1
+  stage: dev
+
+package:
+  artifact: target/target-aws.jar
+  
+functions:
+  forecast:
+    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
+    memorySize: 200MB
+    timeout: 10
+    environment:
+      FUNCTION_NAME: forecast
+    events:
+      - http:
+          path: /forecast
+          method: POST
+          cors: true

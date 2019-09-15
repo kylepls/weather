@@ -1,6 +1,6 @@
-# Created by .ignore support plugin (hsz.mobi)
 .idea
 */node_modules/
 */target/
 package-lock.json
 yarn.lock
+.serverless/
