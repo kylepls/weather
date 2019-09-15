@@ -4,4 +4,4 @@ node_modules/
 target/
 package-lock.json
 yarn-error.log
-build
+build/*
