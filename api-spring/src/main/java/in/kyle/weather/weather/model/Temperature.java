@@ -1,11 +1,11 @@
-package in.kyle.weather.apispring.weather;
+package in.kyle.weather.weather.model;
 
 import lombok.Builder;
 import lombok.Value;
 
 @Value
 @Builder
-public class TemperatureStatus {
+public class Temperature {
 
     double current;
     double apparent;

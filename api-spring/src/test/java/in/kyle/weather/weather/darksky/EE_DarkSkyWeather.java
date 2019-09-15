@@ -1,7 +1,8 @@
-package in.kyle.weather.apispring.weather.darksky;
+package in.kyle.weather.weather.darksky;
 
-import in.kyle.weather.apispring.weather.Coordinate;
-import in.kyle.weather.apispring.weather.WeatherData;
+import in.kyle.weather.weather.model.Coordinate;
+import in.kyle.weather.weather.model.WeatherReport;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +16,6 @@ class EE_DarkSkyWeather {
     @Test
     void getForecast() {
         Coordinate coordinate = new Coordinate(38.6160, 76.6130);
-        WeatherData forecast = weather.getForecast(coordinate);
+        WeatherReport forecast = weather.getForecast(coordinate);
     }
 }

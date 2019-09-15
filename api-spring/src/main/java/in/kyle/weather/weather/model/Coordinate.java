@@ -1,11 +1,11 @@
-package in.kyle.weather.apispring.weather;
+package in.kyle.weather.weather.model;
 
 import lombok.Value;
 
 @Value
 public class Coordinate {
-
-    double longitude;
+    
     double latitude;
+    double longitude;
 
 }
