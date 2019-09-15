@@ -13,8 +13,8 @@ package:
   
 functions:
   forecast:
-    handler: org.springframework.cloud.function.adapter.aws.SpringBootStreamHandler
-    memorySize: 200MB
+    handler: in.kyle.weather.functions.ForecastRequestHandler
+    memorySize: 192MB
     timeout: 10
     environment:
       FUNCTION_NAME: forecast
