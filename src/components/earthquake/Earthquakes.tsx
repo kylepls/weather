@@ -15,7 +15,7 @@ type Earthquake = Readonly<{
 }>
 
 export default function Earthquakes({count}) {
-  let [earthquakes, error] = useFetch('/earthquakes', '15m');
+  let [earthquakes, error] = useFetch('/.netlify/functions/earthquakes', '1h');
 
   if (error) {
     return (<Error name="earthquakes" error={error.message}/>);

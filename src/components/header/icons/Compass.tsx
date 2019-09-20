@@ -6,7 +6,7 @@ type Props = Readonly<{
 
 export default function Compass({directionDeg}: Props) {
   const windStyle = {
-    transform: `rotate(${directionDeg}deg)`
+    transform: `rotate(${directionDeg}deg)`,
   };
   const publicUrl = process.env.PUBLIC_URL;
   return (

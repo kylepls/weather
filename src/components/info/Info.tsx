@@ -9,7 +9,7 @@ import './Info.css';
 import Carousel from '../Carousel';
 
 function Snowdays() {
-  const [snowdays, error] = useFetch('/snowday', '15m');
+  const [snowdays, error] = useFetch('/.netlify/function/snowday', '1h');
   const render = !error && snowdays && snowdays.some(({chance}) => chance > 0);
   if (render) {
     const days = snowdays.map(({day, chance}) => {
@@ -25,7 +25,7 @@ function Snowdays() {
 }
 
 function Events() {
-  const [eventsData, error] = useFetch('/events', '30m');
+  const [eventsData, error] = useFetch('/.netlify/functions/events', '1h');
   const render = !error && eventsData && eventsData.length > 0;
   if (render) {
     return eventsData.map(({date, name, description}) => {
@@ -35,7 +35,7 @@ function Events() {
 }
 
 function Facts() {
-  const [factsData, error] = useFetch('/facts', '30m');
+  const [factsData, error] = useFetch('/.netlify/functions/facts', '1h');
   const renderFacts = !error && factsData && factsData.length > 0;
   if (renderFacts) {
     return factsData.map((fact) => (<Fact value={fact}/>));

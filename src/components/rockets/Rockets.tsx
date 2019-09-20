@@ -14,7 +14,7 @@ type Rocket = Readonly<{
 }>
 
 export default function Rockets({count}) {
-  let [rockets, error] = useFetch('/rockets', '15m');
+  let [rockets, error] = useFetch('/.netlify/functions/rockets', '1h');
 
   if (error) {
     return (<Error name="rockets" error={error.message}/>);

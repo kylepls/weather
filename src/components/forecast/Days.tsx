@@ -48,7 +48,7 @@ function PredictionDay({data, index}) {
 }
 
 function useData(): [any, Error] {
-  const [json, error] = useFetch('/weather', '1h');
+  const [json, error] = useFetch('/.netlify/functions/weather', '1h');
   if (json) {
     const hourly = json.daily.data;
     return [[...hourly].splice(0, 5), error];
