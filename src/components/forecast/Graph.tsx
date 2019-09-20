@@ -44,7 +44,7 @@ function makeGraphOptions(gridLines: number) {
 }
 
 export default function Graph() {
-  const [data, error] = useFetch('/weather', '1h');
+  const [data, error] = useFetch('/.netlify/functions/weather', '1h');
   if (error) {
     return (<Error name="Graph" error={error.message}/>);
   } else if (!data) {

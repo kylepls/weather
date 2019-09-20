@@ -22,7 +22,7 @@ const colSize = Math.floor(12 / 4);
 
 export default function DataElements() {
   let alerts;
-  const [json, dataError] = useFetch('/weather', '15m');
+  const [json, dataError] = useFetch('/.netlify/functions/weather', '1h');
   if (dataError) {
     return (<Error name="weather current" error={dataError.message}/>);
   } else if (!json) {

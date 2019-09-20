@@ -38,7 +38,7 @@ function parseSun(sunJson: any): Body {
   const data = parseBody(sunJson);
   return {
     ...data,
-    bodyImage: '/sun-icon.png',
+    bodyImage: '/light-icons/Sun.png',
   };
 }
 
@@ -46,12 +46,12 @@ function parseMoon(moonJson: any): Body {
   const data = parseBody(moonJson);
   return {
     ...data,
-    bodyImage: `/moon-icons/${moonJson.phase}.png`,
+    bodyImage: `/light-icons/${moonJson.phase.replace(' ', '-')}.png`,
   };
 }
 
 export default function Light() {
-  const [json, error] = useFetch('/planets', '15m');
+  const [json, error] = useFetch('/.netlify/functions/planets', '10m');
 
   if (error) {
     return (<Error name="daylight" error={error.message}/>);
