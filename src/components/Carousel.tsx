@@ -1,15 +1,15 @@
-import React, {useState} from 'react'
-import {useInterval} from "./Hooks";
+import React, {useState} from 'react';
+import {useInterval} from 'util/Hooks';
 
 export default function Carousel({items, intervalString}) {
-    let [index, setIndex] = useState(0)
+  let [index, setIndex] = useState(0);
 
-    const advanceIndex = () => ++index >= items.length ? setIndex(0) : setIndex(index)
-    useInterval(advanceIndex, intervalString)
+  const advanceIndex = () => ++index >= items.length ? setIndex(0) : setIndex(index);
+  useInterval(advanceIndex, intervalString);
 
-    if (items.length === 0) {
-        return (<></>)
-    }
+  if (items.length === 0) {
+    return (<></>);
+  }
 
-    return items[index]
+  return items[index];
 }
