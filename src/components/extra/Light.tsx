@@ -1,7 +1,7 @@
 import React from 'react'
 import LightSvg from './LightSvg'
 import moment from 'moment'
-import {useFetch} from '../Hooks'
+import {useFetch, usePosition} from '../Hooks'
 
 import {Error, Loading} from "../Loading";
 
@@ -18,11 +18,11 @@ type Body = Readonly<{
 function parseBody(json: any): Body {
     const getPercent = (start, end, now) => {
         return (now.getTime() - start.getTime()) / (end.getTime() - start.getTime())
-    }
+    };
 
-    const now = moment()
-    const bodyRise = moment(json.rise)
-    const bodySet = moment(json.set)
+    const now = moment();
+    const bodyRise = moment(json.rise);
+    const bodySet = moment(json.set);
     const bodyUp = now.isBetween(bodyRise, bodySet);
     return {
         bodyImage: 'null',
@@ -37,12 +37,12 @@ function parseSun(sunJson: any): Body {
     let data = parseBody(sunJson);
     return {
         ...data,
-        bodyImage: 'https://i.imgur.com/ydyCjSN.png',
+        bodyImage: '/sun-icon.png',
     }
 }
 
 function parseMoon(moonJson: any): Body {
-    let data = parseBody(moonJson)
+    let data = parseBody(moonJson);
     return {
         ...data,
         bodyImage: `/moon-icons/${moonJson.phase}.png`,
@@ -50,19 +50,19 @@ function parseMoon(moonJson: any): Body {
 }
 
 export default function Light() {
-    const json = useFetch('http://localhost:8000/solar', '15m')
+    const [json, error] = useFetch('/planets', '15m');
 
-    if (!json) {
+    if (error) {
+        return (<Error name="daylight" error={error.message}/>)
+    } else if (!json) {
         return (<Loading/>)
-    } else if (json.err) {
-        return (<Error name="daylight" msg={json.err}/>)
     }
 
-    const sun = parseSun(json.sun)
-    const moon = parseMoon(json.moon)
+    const sun = parseSun(json.sun);
+    const moon = parseMoon(json.moon);
 
-    const renderBody = sun.up ? sun : moon
-    const {bodyPercent, bodyImage, minTime, maxTime} = renderBody
+    const renderBody = sun.up ? sun : moon;
+    const {bodyPercent, bodyImage, minTime, maxTime} = renderBody;
 
     return (
         <div className="light">
@@ -70,8 +70,7 @@ export default function Light() {
             <LightSvg primaryColor="grey"
                       secondaryColor="black"
                       percent={bodyPercent}
-                      planetImage={bodyImage}
-            />
+                      planetImage={bodyImage}/>
             <div className="times">
                 <p>
                     <span className="left">

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useFetch } from '../Hooks'
+import {useFetch} from '../Hooks'
 import {Row} from 'react-materialize'
 import ParameterDisplay from './ParameterDisplay'
-import {Loading, Error} from "../Loading";
+import {Error, Loading} from "../Loading";
 
 import CompassIcon from './icons/Compass'
 import TempIcon from './icons/Temp'
@@ -17,47 +17,52 @@ type Alert = {
     title: string
 }
 
-const colSize = Math.floor(12/4)
+const colSize = Math.floor(12 / 4);
 
 export default function DataElements() {
-    const alerts: Alert[] | any = useFetch('http://localhost:8000/weatherAlerts', '15m');
-    let data = useFetch('http://localhost:8000/weatherCurrent', '15m')
-    if (!data) {
-        return (<Loading />)
-    } else if (data.err) {
-        return (<Error msg={data.err} name="weather current" /> )
-    } 
-    data = data[0];
-    
+    // todo context
+    // const [alerts, alertsError] = useFetch('/weather', '15m');
+    let alerts;
+    let alertsError;
+    const [json, dataError] = useFetch('/weather', '15m');
+    if (dataError || alertsError) {
+        return (<Error name="weather current" error={(dataError || alertsError).message}/>);
+    } else if (!json) {
+        return (<Loading/>);
+    }
+
+    const currentData = json.currently;
+
     return (
         <div className="currentWeather">
-            <h6>{alerts && alerts.length !== 0 ? (<Alerts alerts={alerts} />) : data.description}</h6>
-            <br />
+            <h6>{alerts && alerts.length !== 0 ? (
+                <Alerts alerts={alerts}/>) : json.description}</h6>
+            <br/>
             <Row className="dataElements" text-align="center">
-                <WindSpeed speed={data.windSpeed} />
-                <WindDirection direction={data.windDirectionDeg} />
-                <Temp temp={data.temp} />
-                <Precipitation rain={data.precipitation} snow={data.snow} />
+                <WindSpeed speed={currentData.windSpeed}/>
+                <WindDirection direction={currentData.windBearing}/>
+                <Temp temp={currentData.temperature}/>
+                <Precipitation amount={json.precipIntensity || 0} type={json.precipType}/>
             </Row>
         </div>
-    )
+    );
 }
 
 function WindSpeed({speed}) {
-    const format = (speed) => `${speed} mph`
+    const format = (speed) => `${speed} mph`;
     return (
-      <ParameterDisplay value={speed} colSize={colSize} image={
-          (<WindIcon speed={speed} />)
-      } formatter={format} />
-    )
+        <ParameterDisplay value={speed} colSize={colSize} image={
+            (<WindIcon speed={speed}/>)
+        } formatter={format}/>
+    );
 }
 
 function WindDirection({direction}) {
     return (
         <ParameterDisplay value={direction} colSize={colSize} image={
-            (<CompassIcon directionDeg={direction} />)
-        } formatter={formatWindDirection} />
-    )
+            (<CompassIcon directionDeg={direction}/>)
+        } formatter={formatWindDirection}/>
+    );
 }
 
 function formatWindDirection(current: number) {
@@ -70,49 +75,50 @@ function formatWindDirection(current: number) {
         [225, 'Southwest'],
         [270, 'West'],
         [315, 'Northwest']
-    ]
+    ];
 
-    const dist = (a: number, b: number) => Math.abs(a-b)
+    const dist = (a: number, b: number) => Math.abs(a - b);
 
     const [, name] = directions.reduce((prev: any, next: any) => {
         return dist(prev[0], current) < dist(next[0], current) ? prev : next
-    })
+    });
 
-    return `${name}`
+    return `${name}`;
 }
 
 function Temp({temp}) {
-    const formatter = (temp) => `${temp} ℉`
+    const formatter = (temp) => `${temp} ℉`;
     return (
-        <ParameterDisplay value={temp} colSize={colSize} formatter={formatter}  image={
-            (<TempIcon temp={temp} />)
-        } />
-    )
+        <ParameterDisplay value={temp} colSize={colSize} formatter={formatter} image={
+            (<TempIcon temp={temp}/>)
+        }/>
+    );
 }
 
-function Precipitation({rain, snow}) {
-    const p = Math.max(rain, snow)
-    const formatter = (p) => p === 0 ? 'No rain' : `${p}″/hr`
+type PercipType = "rain" | "snow" | "sleet";
+
+function Precipitation({amount, type}: { amount: number, type: PercipType }) {
+    const formatter = (amount) => amount === 0 ? 'No rain' : `${amount}″/hr`;
     return (
         <ParameterDisplay
             colSize={colSize}
-            value={p}
+            value={amount}
             formatter={formatter}
             image={
-                snow === 0 ?
-                (<RainIcon amount={p} />)
-                : ( <SnowIcon amount={snow} /> )
+                type !== "snow" ?
+                    (<RainIcon amount={amount}/>)
+                    : (<SnowIcon amount={amount}/>)
             }
         />
-    )
+    );
 }
 
-function Alerts({alerts}: {alerts: Alert[]}) {
+function Alerts({alerts}: { alerts: Alert[] }) {
     return (
         <div className="alerts">
-            { alerts.map((a, i) => (<Alert key={i} alert={a} />))}
+            {alerts.map((a, i) => (<Alert key={i} alert={a}/>))}
         </div>
-    )
+    );
 }
 
 function Alert({alert}) {
@@ -120,5 +126,5 @@ function Alert({alert}) {
         <div className="alert">
             {alert.severity}: {alert.title}
         </div>
-    )
+    );
 }

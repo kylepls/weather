@@ -1,21 +1,26 @@
 import React from 'react'
 import { useFetch } from '../Hooks'
 import { Chart } from 'react-google-charts'
-import WeatherData from '../WeatherData'
 import GraphOptions from './GraphOptions.json'
 import {Loading, Error} from "../Loading";
+import moment from "moment";
 
-function makeGraphData(data: WeatherData[]) {
+const div = 3;
+const cutoffTime = moment.duration(1, 'days');
+
+function makeGraphData(data) {
     return data.filter(item => {
-        return new Date(item.time) > new Date()
-    }).filter((_, index) => {
-        return index % 3 === 0
-    }).map(item => {
+        return new Date(item.time * 1000) > new Date()
+    }).filter(item => {
+        const cutoff = moment().add(cutoffTime);
+        const itemTime = moment.unix(item.time);
+        return itemTime.isBefore(cutoff)
+    }).map((item, index) => {
         return [
-            new Date(item.time),
-            item.temp,
-            Math.round(item.temp),
-            item.temp
+            new Date(item.time * 1000),
+            item.temperature,
+            index % div == 0 ? Math.round(item.temperature) : "",
+            index % div == 0 ? item.temperature : ""
         ]
     })
 }
@@ -29,21 +34,23 @@ function makeGraphHeaders() {
     ]
 }
 
-function makeGraphOptions(gridlines: number) {
+function makeGraphOptions(gridLines: number) {
     const options =  {
         ...GraphOptions
-    }
-    options.hAxis.gridlines.count = gridlines;
-    return options
+    };
+    options.hAxis.gridlines.count = gridLines;
+    return options;
 }
 
 export default function Graph() {
-    const data: WeatherData[] | any = useFetch('http://localhost:8000/weatherHourly', '15m')
-    if (!data) {
-        return ( <Loading /> )
-    } else if (data.err) {
-        return  ( <Error name="Graph" msg={data.err}/> )
+    const [data, error] = useFetch('/weather', '1h');
+    if (error) {
+        return  ( <Error name="Graph" error={error.message}/> );
+    } else if (!data) {
+        return ( <Loading /> );
     } 
+    
+    const hourly = data.hourly.data;
 
     return (
         <div className="forecastGraph">
@@ -51,9 +58,9 @@ export default function Graph() {
                 width="100%"
                 chartType="AreaChart"
                 loader={ <div>Loading Chart...</div> }
-                data={ [ makeGraphHeaders(), ...makeGraphData(data) ] }
-                options={ makeGraphOptions(data.length/3) }
+                data={ [ makeGraphHeaders(), ...makeGraphData(hourly) ] }
+                options={ makeGraphOptions(hourly.length/div) }
             />
         </div>
-    )
+    );
 }

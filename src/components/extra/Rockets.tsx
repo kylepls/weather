@@ -13,12 +13,12 @@ type Rocket = Readonly<{
 }>
 
 export default function Rockets({count}) {
-    let rockets: Rocket[] | any = useFetch('http://localhost:8000/rockets', '15m')
+    let [rockets, error] = useFetch('/rockets', '15m');
 
-    if (!rockets) {
+    if (error) {
+        return (<Error name="rockets" error={error.message}/>)
+    } else if (!rockets) {
         return (<Loading/>)
-    } else if (rockets.err) {
-        return (<Error name="rockets" msg={rockets.err}/>)
     }
 
     rockets = rockets.slice(0, count);

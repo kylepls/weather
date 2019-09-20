@@ -11,16 +11,16 @@ const chances: any = [
     [0.75, 'Possibly no school'],
     [0.55, 'Delay likely'],
     [-1, 'No chance']
-]
+];
 
 function getChanceString(chance: number): string {
-    const pair = chances.find(([threshold]: [number]) => chance >= threshold)
+    const pair = chances.find(([threshold]: [number]) => chance >= threshold);
     return pair[1]
 }
 
 export default function({day, chance}: any) {
-    const time = moment(day, 'YYYYMMDD')
-    const chanceString = getChanceString(chance)
+    const time = moment(day, 'YYYYMMDD');
+    const chanceString = getChanceString(chance);
     return (
         <div className="snowday">
         <p className="snowdayInfo">
@@ -33,5 +33,5 @@ export default function({day, chance}: any) {
         </span>
             </p>
         </div>
-    )
+    );
 }

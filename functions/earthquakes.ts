@@ -1,6 +1,7 @@
 import {APIGatewayEvent} from "aws-lambda";
 import moment from 'moment'
 import {getHtml} from "./util/HttpRequest";
+import 'source-map-support/register';
 
 export interface EarthquakeEvent {
     place: string
@@ -16,6 +17,7 @@ export interface Coordinates {
 export async function handler(event: APIGatewayEvent): Promise<any> {
     const body = JSON.parse(event.body || "");
     const coords: Coordinates = body as Coordinates;
+    if (!coords.latitude) throw Error("No coords");
     const data = await getData(coords);
     return {
         statusCode: 200,

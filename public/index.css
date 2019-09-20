@@ -74,3 +74,6 @@ html {
     height: 70%;
 }
 
+.error p {
+    margin: 0;
+}

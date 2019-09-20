@@ -1,10 +1,10 @@
 import React from 'react'
 
 const LightSvg = ({ percent, planetImage, primaryColor, secondaryColor }: any) => {
-    const rx = 109.6, ry = 88
+    const rx = 109.6, ry = 88;
 
-    const height = 54
-    const [ x, y ] = calcArcXY(percent, rx, ry)
+    const height = 54;
+    const [ x, y ] = calcArcXY(percent, rx, ry);
 
     return (
         <div className="lightElement">
@@ -20,20 +20,20 @@ const LightSvg = ({ percent, planetImage, primaryColor, secondaryColor }: any) =
             </svg>
         </div>
     )
-}
+};
 
 function calcArcXY(percent: number, rx: number, ry: number) {
-    const endBound = 0.11
-    const maxP = 1-endBound, minP = endBound
-    let p = (Math.round(percent * 100) % 100)/100
-    p = (maxP - minP) * p + minP
+    const endBound = 0.11;
+    const maxP = 1-endBound, minP = endBound;
+    let p = (Math.round(percent * 100) % 100)/100;
+    p = (maxP - minP) * p + minP;
 
-    const theta = p * Math.PI + Math.PI
+    const theta = p * Math.PI + Math.PI;
 
-    let x = rx * Math.cos(theta) + 100
-    let y = ry * Math.sin(theta) + 90
+    let x = rx * Math.cos(theta) + 100;
+    let y = ry * Math.sin(theta) + 90;
 
-    return [ x, y ]
+    return [ x, y ];
 }
 
-export default LightSvg
+export default LightSvg;

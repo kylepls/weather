@@ -9,11 +9,11 @@ export function Loading() {
     )
 }
 
-export function Error({name, msg}) {
+export function Error({name, error}: {name: string, error: string}) {
     return (
         <div className="center error">
-            <Icon medium>error</Icon>
-            <p>Error loading {name}: {msg}</p>
+            <Icon small>error</Icon>
+            <p>Error loading {name}: {error}</p>
         </div>
     )
 }

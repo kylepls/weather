@@ -9,12 +9,12 @@ import './Info.css'
 import Carousel from "../Carousel";
 
 function Snowdays() {
-    const snowdays: Snowday[] = useFetch('http://localhost:8000/snowday', '15m');
-    const render = snowdays && snowdays.some(({chance}) => chance > 0)
+    const [snowdays, error] = useFetch('/snowday', '15m');
+    const render = !error && snowdays && snowdays.some(({chance}) => chance > 0);
     if (render) {
         const days = snowdays.map(({day, chance}) => {
             return ( <SnowdayView key={day} day={day} chance={chance} /> )
-        })
+        });
         return (
             <>
                 <h5 className="snowdaysHeader">Snowdays</h5>
@@ -25,8 +25,8 @@ function Snowdays() {
 }
 
 function Events() {
-    const eventsData: Event[] = useFetch('http://localhost:8000/events', '30m');
-    const render = eventsData && eventsData.length > 0
+    const [eventsData, error] = useFetch('/events', '30m');
+    const render = !error && eventsData && eventsData.length > 0;
     if (render) {
         return eventsData.map(({date, name, description}) => {
             return (<EventView key={date} date={date} name={name} description={description}/>)
@@ -35,23 +35,24 @@ function Events() {
 }
 
 function Facts() {
-    const factsData: string[] = useFetch('http://localhost:8000/facts', '30m');
-    const renderFacts = factsData && factsData.length > 0
+    const [factsData, error] = useFetch('/facts', '30m');
+    const renderFacts = !error && factsData && factsData.length > 0;
     if (renderFacts) {
         return factsData.map(fact => ( <Fact value={fact} />))
     }
 }
 
 export default function Info() {
-    const carouselItems = [] as any[]
+    const carouselItems = [] as any[];
     const addElement = (value) => {
-        if (value instanceof Array) carouselItems.push(...value)
+        if (value instanceof Array) carouselItems.push(...value);
         else if (value) carouselItems.push(value)
-    }
+    };
     
-    addElement(Facts())
-    addElement(Events())
-    addElement(Snowdays())
+    addElement(Facts());
+    addElement(Events());
+    // TODO add snowdays
+    // addElement(Snowdays());
     
     return (
         <Container>

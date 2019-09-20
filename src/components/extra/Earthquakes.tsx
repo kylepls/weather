@@ -14,12 +14,12 @@ type Earthquake = Readonly<{
 }>
 
 export default function Earthquakes({count}) {
-    let earthquakes: Earthquake[] | any = useFetch('http://localhost:8000/earthquakes', '15m')
+    let [earthquakes, error] = useFetch('/earthquakes', '15m');
 
-    if (!earthquakes) {
+    if (error) {
+        return (<Error name="earthquakes" error={error.message}/>)
+    } else if (!earthquakes) {
         return (<Loading/>)
-    } else if (earthquakes.err) {
-        return (<Error name="earthquakes" msg={earthquakes.err}/>)
     }
 
     earthquakes = earthquakes.slice(0, count);
@@ -27,7 +27,7 @@ export default function Earthquakes({count}) {
     return (
         <Container className="earthquakes">
             <h6 className="center">Earthquakes</h6>
-            <br />
+            <br/>
             {
                 earthquakes.map((r, i) => (<Earthquake key={i} earthquake={r}/>))
             }
@@ -40,7 +40,7 @@ function Earthquake({earthquake}: { earthquake: Earthquake }) {
         <Row className="earthquake">
             <Col s={2}>{earthquake.magnitude}</Col>
             <Col s={4}>{moment(earthquake.time).format("ddd, ha")}</Col>
-            <Col s={12-6}>
+            <Col s={12 - 6}>
                 <Textfit>{earthquake.place}</Textfit>
             </Col>
         </Row>

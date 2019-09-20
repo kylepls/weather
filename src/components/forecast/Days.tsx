@@ -6,49 +6,14 @@ import { useFetch } from '../Hooks'
 
 import './Days.css'
 
-interface WeatherDay {
-    time: Date
-    description: string
-    iconUrl: string
-    tempMax: number
-    tempMin: number
-    precipitation: number
-    snow: number
-}
-
-function useData(): WeatherDay[] | any {
-    const json = useFetch('http://localhost:8000/weatherDaily', '15m')
-    if (json && !json.err) {
-        return json.splice(0, 5)
-    } else {
-        return json
-    }
-}
-
-function PredictionDay({data, index}) {
-    return (
-        <Col s={2} key={index} className="predictionDay">
-            <span className="dayName">{ moment(data.time).format('dddd') }</span>
-            <br />
-            <img className="dayIcon" alt="icon" src={data.iconUrl} />
-            <br />
-            <p className="tempString">
-                <span className="dayTempMax">{Math.round(data.tempMax)}</span>
-                &nbsp;
-                <span className="dayTempMin">{Math.round(data.tempMin)}</span>
-            </p>
-        </Col>
-    )
-}
-
 export default function Days() {
-    const days = useData()
+    const [days, error] = useData();
     if (!days) {
-        return ( <Loading /> )
-    } else if (days.err) {
-        return  ( <Error name="days" msg={days.err} /> )
+        return ( <Loading /> );
+    } else if (error) {
+        return  ( <Error name="days" error={error.message} /> );
     }
-
+    
     return (
         <Row className="predictionDays">
             <Col s={1} />
@@ -61,5 +26,31 @@ export default function Days() {
             }
             <Col s={1} />
         </Row>
-    )
+    );
+}
+
+function PredictionDay({data, index}) {
+    return (
+        <Col s={2} key={index} className="predictionDay">
+            <span className="dayName">{ moment.unix(data.time).format('dddd') }</span>
+            <br />
+            <img className="dayIcon" alt="icon" src={`https://darksky.net/images/weather-icons/${data.icon}.png`} />
+            <br />
+            <p className="tempString">
+                <span className="dayTempMax">{Math.round(data.temperatureHigh)}</span>
+                &nbsp;
+                <span className="dayTempMin">{Math.round(data.temperatureLow)}</span>
+            </p>
+        </Col>
+    );
+}
+
+function useData(): [any, Error]  {
+    const [json, error] = useFetch('/weather', '15m');
+    if (json) {
+        const hourly = json.daily.data;
+        return [[...hourly].splice(0, 5), error];
+    } else {
+        return [json, error];
+    }
 }

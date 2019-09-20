@@ -11,6 +11,7 @@ const darksky = new DarkSky(key);
 export async function handler(event: APIGatewayEvent): Promise<any> {
     const body = JSON.parse(event.body || "");
     const coords: Coordinates = body as Coordinates;
+    console.log("Get weather for " + JSON.stringify(coords));
     const data = await getData(coords);
     return {
         statusCode: 200,
