@@ -1,6 +1,6 @@
-import {APIGatewayEvent} from "aws-lambda";
-import moment from 'moment'
-import {getHtml} from "./util/HttpRequest";
+import {APIGatewayEvent} from 'aws-lambda';
+import moment from 'moment';
+import {getHtml} from './util/HttpRequest';
 import 'source-map-support/register';
 
 export interface EarthquakeEvent {
@@ -15,31 +15,31 @@ export interface Coordinates {
 }
 
 export async function handler(event: APIGatewayEvent): Promise<any> {
-    const body = JSON.parse(event.body || "");
-    const coords: Coordinates = body as Coordinates;
-    if (!coords.latitude) throw Error("No coords");
-    const data = await getData(coords);
-    return {
-        statusCode: 200,
-        body: JSON.stringify(data)
-    }
+  const body = JSON.parse(event.body || '');
+  const coords: Coordinates = body as Coordinates;
+  if (!coords.latitude) throw Error('No coords');
+  const data = await getData(coords);
+  return {
+    statusCode: 200,
+    body: JSON.stringify(data),
+  };
 }
 
 async function getData(coords: Coordinates) {
-    return formatHttpData(await getHtml(makeUrl(coords)));
+  return formatHttpData(await getHtml(makeUrl(coords)));
 }
 
 function makeUrl(coords: Coordinates): string {
-    let time = moment().subtract(2, 'days').format('YYYY-MM-DD');
-    return `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${time}&latitude=${coords.latitude}&longitude=${coords.longitude}&maxradiuskm=750`;
+  const time = moment().subtract(2, 'days').format('YYYY-MM-DD');
+  return `http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${time}&latitude=${coords.latitude}&longitude=${coords.longitude}&maxradiuskm=750`;
 }
 
 function formatHttpData(input: any): EarthquakeEvent[] {
-    return input.features.map((feature: any) => {
-        return {
-            place: feature.properties.place,
-            time: feature.properties.time,
-            magnitude: feature.properties.mag,
-        };
-    });
+  return input.features.map((feature: any) => {
+    return {
+      place: feature.properties.place,
+      time: feature.properties.time,
+      magnitude: feature.properties.mag,
+    };
+  });
 }
