@@ -1,5 +1,5 @@
 import React from 'react'
-import { Textfit } from 'react-textfit';
+import {Textfit} from 'react-textfit';
 
 export default function FactView({value}) {
     return (
@@ -7,7 +7,7 @@ export default function FactView({value}) {
             <h5>Fun Fact</h5>
             <div className="value">
                 <Textfit>
-                    { value }
+                    {value}
                 </Textfit>
             </div>
         </div>
