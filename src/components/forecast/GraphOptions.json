@@ -1,12 +1,18 @@
 {
+  "backgroundColor": "#35343F",
   "animation": {
-    "duration": 500,
-    "startup": true
+    "duration": 1000,
+    "startup": true,
+    "easing": "inAndOut"
   },
   "annotations": {
     "stemColor": "none",
     "highContrast": false,
-    "alwaysOutside": true
+    "alwaysOutside": true,
+    "textStyle": {
+      "color": "white",
+      "fontSize": 12
+    }
   },
   "tooltip": {
     "trigger": "none"
@@ -23,6 +29,9 @@
     "gridlines": {
       "count": 2,
       "color": "transparent"
+    },
+    "textStyle": {
+      "color": "white"
     },
     "format": "h a"
   },

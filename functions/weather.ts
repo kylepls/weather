@@ -6,6 +6,7 @@ const key = process.env.DARK_SKY || 'acc00294d729788be056b48994856b1c';
 if (!key) {
   throw Error('No DARK_SKY key found');
 }
+
 const darksky = new DarkSky(key);
 
 export async function handler(event: APIGatewayEvent): Promise<any> {
