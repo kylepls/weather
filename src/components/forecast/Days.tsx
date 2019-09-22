@@ -16,7 +16,7 @@ export default function Days() {
   }
 
   return (
-    <Row className="predictionDays">
+    <div className="dayContainer dayText">
       <Col s={1}/>
       {
         days.map((data, index) => {
@@ -26,7 +26,7 @@ export default function Days() {
         })
       }
       <Col s={1}/>
-    </Row>
+    </div>
   );
 }
 

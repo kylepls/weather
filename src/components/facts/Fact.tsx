@@ -1,5 +1,6 @@
 import React from 'react';
 import {Textfit} from 'react-textfit';
+import './Fact.css';
 
 export default function FactView({value}) {
   return (

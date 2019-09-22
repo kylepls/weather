@@ -1,5 +1,14 @@
-.predictionDays {
-    text-align: center;
+.dayContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10vh;
+}
+
+.dayText {
+    color: white;
+    font-family: Oswald, sans-serif;
+    font-size: 2.3vh;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .tempString {
