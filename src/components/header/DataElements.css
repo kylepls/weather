@@ -1,6 +1,6 @@
 .weatherContainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
     align-items: flex-end;
     width: 100vh;
