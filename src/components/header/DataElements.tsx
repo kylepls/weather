@@ -1,6 +1,5 @@
 import React from 'react';
 import {useFetch} from 'util/Hooks';
-import {Row} from 'react-materialize';
 import ParameterDisplay from './ParameterDisplay';
 import Loading from 'components/status/Loading';
 import Error from 'components/status/Error';
@@ -13,15 +12,9 @@ import WindIcon from './icons/Wind';
 
 import './DataElements.css';
 
-type Alert = {
-  severity: 'Advisory' | 'Watch' | 'Warning'
-  title: string
-}
-
 const colSize = Math.floor(12 / 4);
 
 export default function DataElements() {
-  let alerts;
   const [json, dataError] = useFetch('/.netlify/functions/weather', '1h');
   if (dataError) {
     return (<Error name="weather current" error={dataError.message}/>);
@@ -32,16 +25,11 @@ export default function DataElements() {
   const currentData = json.currently;
 
   return (
-    <div className="currentWeather">
-      <h6>{alerts && alerts.length !== 0 ? (
-        <Alerts alerts={alerts}/>) : json.description}</h6>
-      <br/>
-      <Row className="dataElements" text-align="center">
-        <WindSpeed speed={currentData.windSpeed}/>
-        <WindDirection direction={currentData.windBearing}/>
-        <Temp temp={currentData.temperature}/>
-        <Precipitation amount={json.precipIntensity || 0} type={json.precipType}/>
-      </Row>
+    <div className="weatherElements weatherContainer text">
+      <WindSpeed speed={currentData.windSpeed}/>
+      <WindDirection direction={currentData.windBearing}/>
+      <Temp temp={currentData.temperature}/>
+      <Precipitation amount={json.precipIntensity || 0} type={json.precipType}/>
     </div>
   );
 }
@@ -108,21 +96,5 @@ function Precipitation({amount, type}: { amount: number, type: PercipType }) {
           (<SnowIcon amount={amount}/>)
       }
     />
-  );
-}
-
-function Alerts({alerts}: { alerts: Alert[] }) {
-  return (
-    <div className="alerts">
-      {alerts.map((a, i) => (<Alert key={i} alert={a}/>))}
-    </div>
-  );
-}
-
-function Alert({alert}) {
-  return (
-    <div className="alert">
-      {alert.severity}: {alert.title}
-    </div>
   );
 }

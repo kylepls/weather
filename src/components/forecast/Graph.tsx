@@ -6,6 +6,7 @@ import moment from 'moment';
 import Loading from 'components/status/Loading';
 import Error from 'components/status/Error';
 import GraphOptions from './GraphOptions.json';
+import './Forecast.css';
 
 const cutoffTime = moment.duration(1, 'days');
 

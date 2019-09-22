@@ -1,9 +1,17 @@
-.dataElements {
+.weatherContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 100vh;
 }
 
-.dataElements img, .dataElements object {
-    max-height: 6vh;
+.text {
+    font-size: 1.9vh;
+    font-family: 'Oswald', sans-serif;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.weatherElements {
+    height: 17vh;
 }

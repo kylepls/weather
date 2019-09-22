@@ -7,6 +7,7 @@ import Rockets from 'components/rockets/Rockets';
 import Info from 'components/info/Info';
 import Carousel from 'components/Carousel';
 import Earthquakes from 'components/earthquake/Earthquakes';
+import DataElements from './components/header/DataElements';
 
 function ExtraItems() {
   return (
@@ -19,6 +20,6 @@ function ExtraItems() {
 
 ReactDOM.render(<Header/>, document.getElementById('header'));
 ReactDOM.render(<Forecast/>, document.getElementById('forecast'));
-ReactDOM.render(<Light/>, document.getElementById('light'));
-ReactDOM.render(<ExtraItems/>, document.getElementById('right-items'));
-ReactDOM.render(<Info/>, document.getElementById('info'));
+// ReactDOM.render(<Light/>, document.getElementById('light'));
+// ReactDOM.render(<ExtraItems/>, document.getElementById('right-items'));
+// ReactDOM.render(<Info/>, document.getElementById('info'));

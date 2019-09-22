@@ -1,13 +1,26 @@
-.header .time {
-    text-align: center;
-    padding-top: 10px;
-    margin-bottom: -10px;
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: white;
+    width: 100%;
 }
 
-.header .date {
-    text-align: center;
+.time {
+    font-family: 'Oswald', sans-serif;
+    font-size: 48px;
 }
 
-.currentWeather {
-    text-align: center;
+.date {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+}
+
+.timeContainer {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 100%;
+    margin-left: 8vh;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
