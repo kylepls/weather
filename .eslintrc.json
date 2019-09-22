@@ -30,6 +30,7 @@
         "no-unused-vars": "off",
         "max-len": [2, 120, 2, {"ignoreUrls": true}],
         "no-console": "warn",
-        "new-cap": "off"
+        "new-cap": "off",
+        "linebreak-style": "off"
     }
 }
