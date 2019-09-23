@@ -2,23 +2,29 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10vh;
+    text-align: center;
 }
 
 .dayText {
     color: white;
-    font-family: Oswald, sans-serif;
-    font-size: 2.3vh;
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    font-size: 2vh;
+    text-shadow: .5vh .5vh .5vh rgba(0, 0, 0, 0.5);
 }
 
-.tempString {
-    display: block;
+.dayText p {
+    margin: 0;
 }
 
 .predictionDay img {
-    height: 6vh;
+    height: 5vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 .dayTempMax {
-    font-weight: bold;
+    font-weight: normal;
+}
+
+.dayTempMin {
+    font-weight: lighter;
 }

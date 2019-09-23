@@ -12,8 +12,6 @@ import WindIcon from './icons/Wind';
 
 import './DataElements.css';
 
-const colSize = Math.floor(12 / 4);
-
 export default function DataElements() {
   const [json, dataError] = useFetch('/.netlify/functions/weather', '1h');
   if (dataError) {
@@ -37,7 +35,7 @@ export default function DataElements() {
 function WindSpeed({speed}) {
   const format = (speed) => `${speed} mph`;
   return (
-    <ParameterDisplay value={speed} colSize={colSize} image={
+    <ParameterDisplay value={speed} image={
       (<WindIcon speed={speed}/>)
     } formatter={format}/>
   );
@@ -45,7 +43,7 @@ function WindSpeed({speed}) {
 
 function WindDirection({direction}) {
   return (
-    <ParameterDisplay value={direction} colSize={colSize} image={
+    <ParameterDisplay value={direction} image={
       (<CompassIcon directionDeg={direction}/>)
     } formatter={formatWindDirection}/>
   );
@@ -75,7 +73,7 @@ function formatWindDirection(current: number) {
 function Temp({temp}) {
   const formatter = (temp) => `${temp} ℉`;
   return (
-    <ParameterDisplay value={temp} colSize={colSize} formatter={formatter} image={
+    <ParameterDisplay value={temp} formatter={formatter} image={
       (<TempIcon temp={temp}/>)
     }/>
   );
@@ -87,7 +85,6 @@ function Precipitation({amount, type}: { amount: number, type: PercipType }) {
   const formatter = (amount) => amount === 0 ? 'No rain' : `${amount}″/hr`;
   return (
     <ParameterDisplay
-      colSize={colSize}
       value={amount}
       formatter={formatter}
       image={

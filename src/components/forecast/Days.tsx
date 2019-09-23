@@ -1,14 +1,13 @@
 import React from 'react';
 import {useFetch} from 'util/Hooks';
 import moment from 'moment';
-import {Col, Row} from 'react-materialize';
 
 import Loading from 'components/status/Loading';
 import Error from 'components/status/Error';
 import './Days.css';
 
 export default function Days() {
-  const [days, error] = useData();
+  const [days, error] = useData(7);
   if (!days) {
     return (<Loading/>);
   } else if (error) {
@@ -17,22 +16,20 @@ export default function Days() {
 
   return (
     <div className="dayContainer dayText">
-      <Col s={1}/>
       {
         days.map((data, index) => {
           return (
-            <PredictionDay key={index} data={data} index={index}/>
+            <PredictionDay key={index} data={data}/>
           );
         })
       }
-      <Col s={1}/>
     </div>
   );
 }
 
-function PredictionDay({data, index}) {
+function PredictionDay({data}) {
   return (
-    <Col s={2} key={index} className="predictionDay">
+    <div className="predictionDay">
       <span className="dayName">{moment.unix(data.time).format('dddd')}</span>
       <br/>
       <img className="dayIcon" alt="icon"
@@ -43,15 +40,15 @@ function PredictionDay({data, index}) {
         &nbsp;
         <span className="dayTempMin">{Math.round(data.temperatureLow)}</span>
       </p>
-    </Col>
+    </div>
   );
 }
 
-function useData(): [any, Error] {
+function useData(days: number): [any, Error] {
   const [json, error] = useFetch('/.netlify/functions/weather', '1h');
   if (json) {
     const hourly = json.daily.data;
-    return [[...hourly].splice(0, 5), error];
+    return [[...hourly].splice(0, days), error];
   } else {
     return [json, error];
   }

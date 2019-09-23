@@ -6,8 +6,6 @@ import Loading from 'components/status/Loading';
 import Error from 'components/status/Error';
 import LightSvg from './LightSvg';
 
-import './Light.css';
-
 type Body = Readonly<{
     bodyImage: string
     bodyPercent: number
