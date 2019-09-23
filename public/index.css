@@ -8,4 +8,5 @@ html {
     margin-top: 5vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Archivo Narrow', sans-serif;
 }

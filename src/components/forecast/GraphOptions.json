@@ -5,13 +5,16 @@
     "startup": true,
     "easing": "inAndOut"
   },
+  "chartArea": {
+    "width": "99%"
+  },
   "annotations": {
     "stemColor": "none",
     "highContrast": false,
     "alwaysOutside": true,
     "textStyle": {
       "color": "white",
-      "fontSize": 12
+      "fontSize": 14
     }
   },
   "tooltip": {

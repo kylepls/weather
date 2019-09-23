@@ -8,7 +8,7 @@ import Error from 'components/status/Error';
 import GraphOptions from './GraphOptions.json';
 import './Forecast.css';
 
-const cutoffTime = moment.duration(1, 'days');
+const cutoffTime = moment.duration(16, 'hours');
 
 function makeGraphData(data) {
   return data.filter((item) => {
@@ -61,6 +61,7 @@ export default function Graph() {
         chartType="AreaChart"
         loader={<div>Loading Chart...</div>}
         data={[makeGraphHeaders(), ...makeGraphData(hourly)]}
+        // @ts-ignore
         options={makeGraphOptions(6)}
       />
     </div>
