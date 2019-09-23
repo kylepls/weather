@@ -8,6 +8,7 @@ import Info from 'components/info/Info';
 import Carousel from 'components/Carousel';
 import Earthquakes from 'components/earthquake/Earthquakes';
 import DataElements from './components/header/DataElements';
+import * as serviceWorker from 'app/serviceWorker';
 
 function ExtraItems() {
   return (
@@ -23,3 +24,4 @@ ReactDOM.render(<Forecast/>, document.getElementById('forecast'));
 // ReactDOM.render(<Light/>, document.getElementById('light'));
 // ReactDOM.render(<ExtraItems/>, document.getElementById('right-items'));
 // ReactDOM.render(<Info/>, document.getElementById('info'));
+serviceWorker.unregister();

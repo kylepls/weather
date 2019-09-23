@@ -19,6 +19,7 @@
     "aws-lambda": "^0.1.2",
     "axios": "^0.18.0",
     "dark-sky": "^1.1.5",
+    "dotenv": "^8.1.0",
     "http-proxy-middleware": "^0.20.0",
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0",

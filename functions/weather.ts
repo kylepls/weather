@@ -2,7 +2,9 @@ import {APIGatewayEvent} from 'aws-lambda';
 import {Coordinates} from './earthquakes';
 
 const DarkSky = require('dark-sky');
-const key = process.env.DARK_SKY || 'acc00294d729788be056b48994856b1c';
+require('dotenv').config();
+
+const key = process.env.DARK_SKY;
 if (!key) {
   throw Error('No DARK_SKY key found');
 }
