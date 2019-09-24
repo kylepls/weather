@@ -20,7 +20,7 @@ const darksky = new DarkSky(key);
 export async function handler(event: APIGatewayEvent): Promise<any> {
   console.log('HEADERS: ' + JSON.stringify(event.headers));
   if (!dev) {
-    const ip = getSourceIp(event.requestContext);
+    const ip = event.headers['x-forwarded-for'];
 
     try {
       await limiter.check(20, ip);
