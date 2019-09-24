@@ -30,6 +30,7 @@ The site is hosted by [Netlify](https://www.netlify.com/). Backend requests are 
 
 Netlify is an amazing platform that makes the deveopment and deployment of this application so simple. If you haven't already, you should check it out.
 
+If you want to run the application on a machine with a cursor add /kiosk to the URL. This will hide the cursor on the webpage.
 ---
 
 ### Host it yourself
