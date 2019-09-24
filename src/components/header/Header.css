@@ -1,14 +1,17 @@
 #header {
     color: whitesmoke;
+    margin-top: 5vh;
 }
 
 #timeContainer {
-    display:inline-block;
+    display: inline-block;
     width: 40%;
 }
 
 .time {
     font-size: 5vh;
+    margin-bottom: 1vh;
+    font-weight: normal;
 }
 
 .date {

@@ -6,7 +6,7 @@ import './Forecast.css';
 
 export default function Forecast() {
   return (
-    <div className="forecastContainer">
+    <div id="forecast" className="forecastContainer">
       <Graph/>
       <Days/>
     </div>

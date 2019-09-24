@@ -1,6 +1,5 @@
 .text {
     font-size: 2vh;
-    text-shadow: .5vh .5vh .5vh rgba(0, 0, 0, 0.5);
 }
 
 .weatherContainer, img, object {
@@ -10,18 +9,10 @@
 
 .weatherElement {
     display: inline-block;
-    width: 25%;
+    float: right;
+    width: 18%;
     padding-left: 20px;
     padding-right: 20px;
     box-sizing: border-box;
     text-align: center;
-}
-
-#compassNeedle {
-    z-index: 10;
-}
-
-#compassCircle {
-    position: relative;
-    z-index: 0;
 }

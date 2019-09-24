@@ -11,5 +11,5 @@
             <rect height="param(height) 11" rx="1" width="2" x="2" y="param(y) -1"/>
         </g>
     </g>
-    <script type="text/ecmascript" xlink:href="https://www.w3.org/TR/2009/WD-SVGParamPrimer-20090616/param.js" /> 
+    <script type="text/ecmascript" xlink:href="https://www.w3.org/TR/2009/WD-SVGParamPrimer-20090616/param.js" />
 </svg>

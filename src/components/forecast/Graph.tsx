@@ -1,7 +1,7 @@
-import React from 'react';
-import {useFetch} from 'util/Hooks';
+import React, {useContext} from 'react';
 import {Chart} from 'react-google-charts';
 import moment from 'moment';
+import {AppContext} from 'App';
 import GraphOptions from './GraphOptions.json';
 import './Forecast.css';
 
@@ -18,8 +18,8 @@ function makeGraphData(data) {
     return [
       new Date(item.time * 1000),
       item.temperature,
-      index ? Math.round(item.temperature) : '',
-      index ? item.temperature : '',
+            index ? Math.round(item.temperature) : '',
+            index ? item.temperature : '',
     ];
   });
 }
@@ -42,20 +42,21 @@ function makeGraphOptions(gridLines: number) {
 }
 
 export default function Graph() {
-  const [data, error] = useFetch('/.netlify/functions/weather', '1h');
-  if (error) {
-    return <div/>;
-  } else if (!data) {
-    return <div/>;
+  const {weather, weatherError} = useContext(AppContext);
+  if (weatherError) {
+    return (<div/>);
+  } else if (!weather) {
+    return (<div/>);
   }
 
-  const hourly = data.hourly.data;
+  const hourly = weather.hourly.data;
 
   return (
     <div className="forecastGraph">
       <Chart
         width="100%"
         chartType="AreaChart"
+        loader={<div>Loading Chart...</div>}
         data={[makeGraphHeaders(), ...makeGraphData(hourly)]}
         options={makeGraphOptions(6)}
       />

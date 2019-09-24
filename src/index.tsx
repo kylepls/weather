@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from 'components/header/Header';
-import Forecast from 'components/forecast/Forecast';
-import * as serviceWorker from 'app/serviceWorker';
+import * as serviceWorker from 'serviceWorker';
+import App from './App';
 
-ReactDOM.render(<Header/>, document.getElementById('header-container'));
-ReactDOM.render(<Forecast/>, document.getElementById('forecast'));
+ReactDOM.render(<App/>, document.getElementById('app'));
+
 serviceWorker.unregister();
