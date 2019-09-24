@@ -1,24 +1,22 @@
 .dayContainer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10vh;
+    margin-top: 7vh;
+    display: inline-block;
     text-align: center;
 }
 
 .dayText {
     color: white;
     font-size: 2vh;
-    text-shadow: .5vh .5vh .5vh rgba(0, 0, 0, 0.5);
 }
 
 .dayText p {
     margin: 0;
 }
 
-.predictionDay img {
-    height: 5vh;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+.predictionDay {
+    margin: 1vh;
+    display: inline-block;
+    width: 12%;
 }
 
 .dayTempMax {

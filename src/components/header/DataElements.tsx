@@ -1,8 +1,6 @@
 import React from 'react';
 import {useFetch} from 'util/Hooks';
 import ParameterDisplay from './ParameterDisplay';
-import Loading from 'components/status/Loading';
-import Error from 'components/status/Error';
 
 import CompassIcon from './icons/Compass';
 import TempIcon from './icons/Temp';
@@ -15,15 +13,15 @@ import './DataElements.css';
 export default function DataElements() {
   const [json, dataError] = useFetch('/.netlify/functions/weather', '1h');
   if (dataError) {
-    return (<Error name="weather current" error={dataError.message}/>);
+    return <div/>;
   } else if (!json) {
-    return (<Loading/>);
+    return <div/>;
   }
 
   const currentData = json.currently;
 
   return (
-    <div className="weatherElements weatherContainer text">
+    <div className="weatherContainer">
       <WindSpeed speed={currentData.windSpeed}/>
       <WindDirection direction={currentData.windBearing}/>
       <Temp temp={currentData.temperature}/>

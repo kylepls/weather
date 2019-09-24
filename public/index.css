@@ -1,12 +1,16 @@
-html {
-    height: 100vh;
-    width: 100%;
+
+html, body {
     background-color: #35343F;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Archivo Narrow', sans-serif;
 }
 
-.main-container {
-    margin-top: 5vh;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Archivo Narrow', sans-serif;
+#main-container {
+    width:80%;
+    min-width:800px;
+    margin-right:auto;
+    margin-left:auto;
 }

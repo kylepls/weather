@@ -1,14 +1,13 @@
 import React from 'react';
 import Clock from './Clock';
-import {Row} from 'react-materialize';
 
 import './Header.css';
 import DataElements from './DataElements';
 
 export default function Header() {
   return (
-    <div className="header">
-      <div className="timeContainer">
+    <div id="header">
+      <div id="timeContainer">
         <h4 className="time">
           <Clock format="h:mm A" update={1000}/>
         </h4>
