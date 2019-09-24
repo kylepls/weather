@@ -30,6 +30,8 @@ The site is hosted by [Netlify](https://www.netlify.com/). Backend requests are 
 
 Netlify is an amazing platform that makes the deveopment and deployment of this application so simple. If you haven't already, you should check it out.
 
+---
+
 ### Host it yourself
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/kylepls/weather)
