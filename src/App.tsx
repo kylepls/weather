@@ -1,7 +1,13 @@
 import Header from 'components/header/Header';
 import Forecast from 'components/forecast/Forecast';
-import React, {useEffect} from 'react';
+import React, {createContext, useEffect} from 'react';
+import {useFetch} from 'util/Hooks';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+export const AppContext = createContext<Readonly<{
+  weather?: any
+  weatherError?: Error,
+}>>({});
 
 export default function App() {
   return (
@@ -20,10 +26,15 @@ function BaseView({kiosk}) {
       document.body.style.cursor = 'none';
     }
   }, [kiosk]);
+
+  const [weather, weatherError] = useFetch('/.netlify/functions/weather', '1h');
+
   return (
-    <div>
-      <div id="header"><Header/></div>
-      <div id="forecast"><Forecast/></div>
-    </div>
+    <AppContext.Provider value={{weather, weatherError}}>
+      <div>
+        <div id="header"><Header/></div>
+        <div id="forecast"><Forecast/></div>
+      </div>
+    </AppContext.Provider>
   );
 }
