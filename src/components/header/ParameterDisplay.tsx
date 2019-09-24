@@ -10,11 +10,8 @@ function parameterDisplay<R>(props: Props<R>) {
   const {value, image, formatter}: any = props;
   const formatted: string = formatter ? formatter(value) : value.toString();
   return (
-    <div className="center-align">
-      <div className="parameter">
-        {image}
-        <p><span>{formatted}</span></p>
-      </div>
+    <div className="weatherElement">
+      <div className="parameter"> {image} <p> <span>{formatted}</span> </p></div>
     </div>
   );
 }

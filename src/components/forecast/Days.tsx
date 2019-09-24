@@ -1,17 +1,14 @@
 import React from 'react';
 import {useFetch} from 'util/Hooks';
 import moment from 'moment';
-
-import Loading from 'components/status/Loading';
-import Error from 'components/status/Error';
 import './Days.css';
 
 export default function Days() {
   const [days, error] = useData(7);
   if (!days) {
-    return (<Loading/>);
+    return <div/>;
   } else if (error) {
-    return (<Error name="days" error={error.message}/>);
+    return <div/>;
   }
 
   return (

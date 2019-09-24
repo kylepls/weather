@@ -1,24 +1,17 @@
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    color: white;
-    width: 100%;
+#header {
+    color: whitesmoke;
+}
+
+#timeContainer {
+    display:inline-block;
+    width: 40%;
 }
 
 .time {
-    font-size: 5vh
+    font-size: 5vh;
 }
 
 .date {
     font-size: 5vh;
     font-weight: lighter;
-}
-
-.timeContainer {
-    display: flex;
-    flex-direction: column;
-    color: white;
-    width: 100%;
-    text-shadow: .5vh .5vh .5vh rgba(0, 0, 0, 0.5);
 }
