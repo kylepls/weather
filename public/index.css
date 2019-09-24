@@ -5,12 +5,17 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    overflow: hidden;
     font-family: 'Archivo Narrow', sans-serif;
 }
 
-#main-container {
-    width:80%;
-    min-width:800px;
-    margin-right:auto;
-    margin-left:auto;
+h4 {
+    margin: 0;
+}
+
+#app {
+    width: 80%;
+    min-width: 800px;
+    margin-right: auto;
+    margin-left: auto;
 }

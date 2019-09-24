@@ -1,5 +1,5 @@
-import React from 'react';
-import {useFetch} from 'util/Hooks';
+import React, {useContext} from 'react';
+import {AppContext} from 'App';
 import moment from 'moment';
 import './Days.css';
 
@@ -41,12 +41,12 @@ function PredictionDay({data}) {
   );
 }
 
-function useData(days: number): [any, Error] {
-  const [json, error] = useFetch('/.netlify/functions/weather', '1h');
-  if (json) {
-    const hourly = json.daily.data;
-    return [[...hourly].splice(0, days), error];
+function useData(days: number): [any, Error | undefined] {
+  const {weather, weatherError} = useContext(AppContext);
+  if (weather) {
+    const hourly = weather.daily.data;
+    return [[...hourly].splice(0, days), weatherError];
   } else {
-    return [json, error];
+    return [weather, weatherError];
   }
 }

@@ -7,9 +7,9 @@ type Props = Readonly<{
 export default function Compass({directionDeg}: Props) {
   const publicUrl = process.env.PUBLIC_URL;
   return (
-    <div>
-      <object type="image/svg+xml" data={`${publicUrl}/header-icons/compass.svg`} id="compass">
-        <param name="rotate" value={'rotate(' + directionDeg + 'deg)'}/>
+    <div className="compass">
+      <object type="image/svg+xml" data={`${publicUrl}/header-icons/compass.svg`}>
+        <param name="transform" value={`rotate(${directionDeg})`}/>
       </object>
     </div>
   );

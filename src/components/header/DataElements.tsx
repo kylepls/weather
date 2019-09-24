@@ -1,31 +1,29 @@
-import React from 'react';
-import {useFetch} from 'util/Hooks';
+import React, {useContext} from 'react';
 import ParameterDisplay from './ParameterDisplay';
+import {AppContext} from 'App';
 
-import CompassIcon from './icons/Compass';
-import TempIcon from './icons/Temp';
-import RainIcon from './icons/Rain';
-import SnowIcon from './icons/Snow';
-import WindIcon from './icons/Wind';
+import TempIcon from 'components/header/icons/Temp';
+import RainIcon from 'components/header/icons/Rain';
+import SnowIcon from 'components/header/icons/Snow';
+import WindIcon from 'components/header/icons/Wind';
+import CompassIcon from 'components/header/icons/Compass';
 
 import './DataElements.css';
 
 export default function DataElements() {
-  const [json, dataError] = useFetch('/.netlify/functions/weather', '1h');
-  if (dataError) {
-    return <div/>;
-  } else if (!json) {
-    return <div/>;
+  const {weather, weatherError} = useContext(AppContext);
+  if (weatherError) {
+    return (<div/>);
+  } else if (!weather) {
+    return (<div/>);
   }
-
-  const currentData = json.currently;
-
+  const currentData = weather.currently;
   return (
     <div className="weatherContainer">
       <WindSpeed speed={currentData.windSpeed}/>
       <WindDirection direction={currentData.windBearing}/>
       <Temp temp={currentData.temperature}/>
-      <Precipitation amount={json.precipIntensity || 0} type={json.precipType}/>
+      <Precipitation amount={currentData.precipIntensity || 0} type={currentData.precipType}/>
     </div>
   );
 }
