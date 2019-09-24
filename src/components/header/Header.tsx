@@ -1,6 +1,5 @@
 import React from 'react';
 import Clock from './Clock';
-import {Row} from 'react-materialize';
 
 import './Header.css';
 import DataElements from './DataElements';
