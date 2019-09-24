@@ -18,6 +18,7 @@ const limiter = require('lambda-rate-limiter')({
 const darksky = new DarkSky(key);
 
 export async function handler(event: APIGatewayEvent): Promise<any> {
+  console.log('HEADERS: ' + JSON.stringify(event.headers));
   if (!dev) {
     const ip = getSourceIp(event.requestContext);
 
