@@ -63,7 +63,7 @@ function formatWindDirection(current: number, small: boolean) {
     return dist(prev[0], current) < dist(next[0], current) ? prev : next;
   });
 
-  return small? nameSmall : nameBig;
+  return (small? nameSmall : nameBig) as string;
 }
 
 function Temp({temp}) {
