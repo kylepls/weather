@@ -19,7 +19,7 @@ export default function DataElements() {
   }
   const currentData = weather.currently;
   return (
-    <div className="weatherContainer">
+    <div className="weather-elements">
       <WindSpeed speed={currentData.windSpeed}/>
       <WindDirection direction={currentData.windBearing}/>
       <Temp temp={currentData.temperature}/>

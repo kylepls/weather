@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './ParameterDisplay.css';
+
 type Props<T> = {
   value: T
   image: any
@@ -11,7 +13,12 @@ function parameterDisplay<R>(props: Props<R>) {
   const formatted: string = formatter ? formatter(value) : value.toString();
   return (
     <div className="weatherElement">
-      <div className="parameter"> {image} <p> <span>{formatted}</span> </p></div>
+      <div className="parameter">
+        <div className="icon-wrapper">{image}</div>
+        <div className="label-wrapper">
+          <p>{formatted}</p>
+        </div>
+      </div>
     </div>
   );
 }

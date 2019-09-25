@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Compass.css';
+
 type Props = Readonly<{
   directionDeg: number
 }>

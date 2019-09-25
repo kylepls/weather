@@ -4,6 +4,8 @@ import React, {createContext, useEffect} from 'react';
 import {useFetch} from 'util/Hooks';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
+import './App.css';
+
 export const AppContext = createContext<Readonly<{
   weather?: any
   weatherError?: Error,
@@ -31,8 +33,12 @@ function BaseView({kiosk}) {
 
   return (
     <AppContext.Provider value={{weather, weatherError}}>
-      <Header/>
-      <Forecast/>
+      <div className="header-container">
+        <Header/>
+      </div>
+      <div className="forecast-container">
+        <Forecast/>
+      </div>
     </AppContext.Provider>
   );
 }

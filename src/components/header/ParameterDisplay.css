@@ -1,0 +1,21 @@
+.parameter {
+    height: 100%;
+}
+
+.parameter .icon-wrapper {
+    height: 70%;
+}
+
+.parameter img, .parameter object {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+}
+
+.parameter .label-wrapper {
+    height: 30%;
+}
+
+.parameter p {
+    margin: 0;
+}

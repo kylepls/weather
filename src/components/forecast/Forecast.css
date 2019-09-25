@@ -1,11 +1,11 @@
-.forecastContainer {
-    display: inline-block;
-    height: 70vh;
-}
-
 .forecastGraph {
-    margin-top: 10vh;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.forecast {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
 }

@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {AppContext} from 'App';
 import moment from 'moment';
+import {useMediaQuery} from 'react-responsive';
 import './Days.css';
 
 export default function Days() {
@@ -25,9 +26,10 @@ export default function Days() {
 }
 
 function PredictionDay({data}) {
+  const isSmall = useMediaQuery({query: '(max-width: 900px)'});
   return (
     <div className="predictionDay">
-      <span className="dayName">{moment.unix(data.time).format('dddd')}</span>
+      <span className="dayName">{moment.unix(data.time).format( isSmall ? 'ddd' : 'dddd')}</span>
       <br/>
       <img className="dayIcon" alt="icon"
         src={`https://darksky.net/images/weather-icons/${data.icon}.png`}/>

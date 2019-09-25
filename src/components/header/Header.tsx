@@ -6,8 +6,8 @@ import DataElements from './DataElements';
 
 export default function Header() {
   return (
-    <div id="header">
-      <div id="timeContainer">
+    <div className="header">
+      <div className="time-container">
         <h4 className="time">
           <Clock format="h:mm A" update={1000}/>
         </h4>
@@ -15,7 +15,9 @@ export default function Header() {
           <Clock format="MMMM Do, YYYY" update={1000}/>
         </h4>
       </div>
-      <DataElements/>
+      <div className="weather-container">
+        <DataElements/>
+      </div>
     </div>
   );
 }

@@ -1,20 +1,56 @@
-#header {
+.header {
     color: whitesmoke;
-    margin-top: 5vh;
+    height: 100%;
 }
 
-#timeContainer {
+.time-container {
+    float: left;
     display: inline-block;
-    width: 40%;
+    width: 35%;
+    height: 100%;
+}
+
+.weather-container {
+    display: inline-block;
+    width: 65%;
+    height: 100%;
 }
 
 .time {
-    font-size: 5vh;
-    margin-bottom: 1vh;
+    line-height: 150%;
+    height: 50%;
+    font-size: 3vw;
     font-weight: normal;
 }
 
 .date {
-    font-size: 5vh;
+    line-height: 150%;
+    height: 50%;
+    font-size: 3vw;
     font-weight: lighter;
+    float: bottom;
 }
+
+@media only screen and (max-width: 600px) {
+    .time-container, .weather-container, .weather-elements {
+        text-align: center;
+        display: inline-block;
+        float: none;
+        width: 100%;
+    }
+
+    .time-container {
+        height: 50%;
+    }
+
+    .weather-container {
+        transform: translateY(10%);
+        height: 40%;
+    }
+
+    .date, .time {
+        width: 100%;
+        font-size: 250%;
+    }
+}
+

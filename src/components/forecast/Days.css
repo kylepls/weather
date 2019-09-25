@@ -1,5 +1,4 @@
 .dayContainer {
-    margin-top: 7vh;
     display: inline-block;
     text-align: center;
 }
@@ -14,9 +13,13 @@
 }
 
 .predictionDay {
-    margin: 1vh;
+    margin: 0 1%;
     display: inline-block;
     width: 12%;
+}
+
+.predictionDay img {
+    width: 100%;
 }
 
 .dayTempMax {
