@@ -1,6 +1,13 @@
+@media only screen and (max-width: 600px) {
+    .text-container {
+        display: flex;
+        justify-content: center !important;
+    }
+}
+
 .text-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     height: 100%;
 }

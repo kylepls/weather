@@ -39,6 +39,7 @@
     }
 
     .weather-container {
+        margin-top: 7%;
         transform: translateY(10%);
         height: 40%;
     }
