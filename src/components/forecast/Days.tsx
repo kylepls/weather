@@ -27,6 +27,7 @@ export default function Days() {
 
 function PredictionDay({data}) {
   const isSmall = useMediaQuery({query: '(max-width: 900px)'});
+  const isVerySmall = useMediaQuery({query: '(max-width: 400px)'});
   return (
     <div className="predictionDay">
       <span className="dayName">{moment.unix(data.time).format( isSmall ? 'ddd' : 'dddd')}</span>
@@ -36,8 +37,13 @@ function PredictionDay({data}) {
       <br/>
       <p className="tempString">
         <span className="dayTempMax">{Math.round(data.temperatureHigh)}</span>
-        &nbsp;
-        <span className="dayTempMin">{Math.round(data.temperatureLow)}</span>
+        {
+          isVerySmall? <></> :
+            <>
+              &nbsp;
+              <span className="dayTempMin">{Math.round(data.temperatureLow)}</span>
+            </>
+        }
       </p>
     </div>
   );

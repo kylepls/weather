@@ -29,7 +29,7 @@ export default function DataElements() {
 }
 
 function WindSpeed({speed}) {
-  const format = (speed) => `${speed} mph`;
+  const format = (speed, small) => small ? `${speed.toFixed(0)}mph` : `${speed} mph`;
   return (
     <ParameterDisplay value={speed} image={
       (<WindIcon speed={speed}/>)
@@ -45,29 +45,29 @@ function WindDirection({direction}) {
   );
 }
 
-function formatWindDirection(current: number) {
+function formatWindDirection(current: number, small: boolean) {
   const directions = [
-    [0, 'North'],
-    [45, 'Northeast'],
-    [90, 'East'],
-    [135, 'Southeast'],
-    [180, 'South'],
-    [225, 'Southwest'],
-    [270, 'West'],
-    [315, 'Northwest'],
+    [0, 'North', 'N'],
+    [45, 'Northeast', 'NE'],
+    [90, 'East', 'E'],
+    [135, 'Southeast', 'SE'],
+    [180, 'South', 'S'],
+    [225, 'Southwest', 'SW'],
+    [270, 'West', 'W'],
+    [315, 'Northwest', 'NW'],
   ];
 
   const dist = (a: number, b: number) => Math.abs(a - b);
 
-  const [, name] = directions.reduce((prev: any, next: any) => {
+  const [, nameBig, nameSmall] = directions.reduce((prev: any, next: any) => {
     return dist(prev[0], current) < dist(next[0], current) ? prev : next;
   });
 
-  return `${name}`;
+  return small? nameSmall : nameBig;
 }
 
 function Temp({temp}) {
-  const formatter = (temp) => `${temp} ℉`;
+  const formatter = (temp, small) => `${temp.toFixed(small ? 0 : 2)} ℉`;
   return (
     <ParameterDisplay value={temp} formatter={formatter} image={
       (<TempIcon temp={temp}/>)
@@ -78,7 +78,7 @@ function Temp({temp}) {
 type PercipType = 'rain' | 'snow' | 'sleet';
 
 function Precipitation({amount, type}: { amount: number, type: PercipType }) {
-  const formatter = (amount) => amount === 0 ? 'No rain' : `${amount}″/hr`;
+  const formatter = (amount, small) => amount === 0 ? (small ? '0″/hr' : 'No rain') : `${amount}″/hr`;
   return (
     <ParameterDisplay
       value={amount}

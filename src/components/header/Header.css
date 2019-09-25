@@ -17,18 +17,13 @@
 }
 
 .time {
-    line-height: 150%;
     height: 50%;
-    font-size: 3vw;
     font-weight: normal;
 }
 
 .date {
-    line-height: 150%;
     height: 50%;
-    font-size: 3vw;
     font-weight: lighter;
-    float: bottom;
 }
 
 @media only screen and (max-width: 600px) {
