@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 // https://en.wikipedia.org/wiki/Rain#Intensity
 const levels: number[][] = [
@@ -22,7 +22,7 @@ export default function Rain({amount}: any) {
   const style = amount !== 0 ? `animation-duration: ${speed}s` : '';
 
   return (
-    <object type="image/svg+xml" data={`${publicUrl}/header-icons/rain.svg`}>
+    <object type="image/svg+xml" data={`${publicUrl}/header-icons/rain.svg?date=${Date.now()}`}>
       <param name="s" value={style}/>
     </object>
   );

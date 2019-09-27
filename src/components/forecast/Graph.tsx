@@ -16,7 +16,7 @@ function makeGraphData(data, annotationFrequency: number = 1) {
     const itemTime = moment.unix(item.time);
     return itemTime.isBefore(cutoff);
   }).map((item, index) => {
-    const showAnnotation = index % annotationFrequency == 0;
+    const showAnnotation = index % annotationFrequency === 0;
     return [
       new Date(item.time * 1000),
       item.temperature,

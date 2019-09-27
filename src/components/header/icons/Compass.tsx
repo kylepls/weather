@@ -10,7 +10,7 @@ export default function Compass({directionDeg}: Props) {
   const publicUrl = process.env.PUBLIC_URL;
   return (
     <div className="compass">
-      <object type="image/svg+xml" data={`${publicUrl}/header-icons/compass.svg`}>
+      <object type="image/svg+xml" data={`${publicUrl}/header-icons/compass.svg?date=${Date.now()}`}>
         <param name="transform" value={`rotate(${directionDeg})`}/>
       </object>
     </div>

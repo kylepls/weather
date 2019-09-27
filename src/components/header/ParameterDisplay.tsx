@@ -1,5 +1,4 @@
 import React from 'react';
-import TextFit from 'react-textfit';
 import {useMediaQuery} from 'react-responsive';
 
 import './ParameterDisplay.css';

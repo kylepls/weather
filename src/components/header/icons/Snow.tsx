@@ -22,7 +22,7 @@ export default function Snow({amount}: any) {
   const style = amount !== 0 ? `animation-duration: ${speed}s` : '';
 
   return (
-    <object type="image/svg+xml" data={`${publicUrl}/header-icons/snow.svg`}>
+    <object type="image/svg+xml" data={`${publicUrl}/header-icons/snow.svg?date=${Date.now()}`}>
       <param name="s" value={style}/>
     </object>
   );
