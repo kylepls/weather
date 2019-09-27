@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './Compass.css';
 
@@ -10,7 +10,7 @@ export default function Compass({directionDeg}: Props) {
   const publicUrl = process.env.PUBLIC_URL;
   return (
     <div className="compass">
-      <object type="image/svg+xml" data={`${publicUrl}/header-icons/compass.svg?date=${Date.now()}`}>
+      <object type="image/svg+xml" data={`${publicUrl}/header-icons/compass.svg?val=${directionDeg}`}>
         <param name="transform" value={`rotate(${directionDeg})`}/>
       </object>
     </div>

@@ -36,7 +36,7 @@ export default function Temp({temp}: any) {
 
   const [height, y] = makeTempBounds(temp);
   return (
-    <object type="image/svg+xml" data={`${publicUrl}/header-icons/temp.svg?date=${Date.now()}`}>
+    <object type="image/svg+xml" data={`${publicUrl}/header-icons/temp.svg?val=${color + height + y}`}>
       <param name="color" value={color}/>
       <param name="height" value={height}/>
       <param name="y" value={y}/>

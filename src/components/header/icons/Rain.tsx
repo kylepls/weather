@@ -22,7 +22,7 @@ export default function Rain({amount}: any) {
   const style = amount !== 0 ? `animation-duration: ${speed}s` : '';
 
   return (
-    <object type="image/svg+xml" data={`${publicUrl}/header-icons/rain.svg?date=${Date.now()}`}>
+    <object type="image/svg+xml" data={`${publicUrl}/header-icons/rain.svg?val=${speed}`}>
       <param name="s" value={style}/>
     </object>
   );
