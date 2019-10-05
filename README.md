@@ -1,7 +1,7 @@
 # A Weather App
 A no-nonsense SPA for showing weather in your area.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/85428527-7fda-4fc5-864d-ed095a5a5d15/deploy-status)](https://app.netlify.com/sites/kylesblog/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8b434a4f-ea13-4b7b-a98e-efd7cb7fd1d0/deploy-status)](https://app.netlify.com/sites/weather-app-kyle/deploys)
 
 ![demo](https://i.imgur.com/iaN9EKK.png)
 
