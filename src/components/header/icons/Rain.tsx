@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 // https://en.wikipedia.org/wiki/Rain#Intensity
 const levels: number[][] = [
