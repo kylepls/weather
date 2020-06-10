@@ -1,51 +1,29 @@
 import React, {useContext} from 'react';
-import {Chart} from 'react-google-charts';
 import moment from 'moment';
 import {AppContext} from 'App';
-import {useMediaQuery} from 'react-responsive';
-import GraphOptions from './GraphOptions.json';
+import {Area, AreaChart, ResponsiveContainer, XAxis, YAxis} from 'recharts';
 import './Forecast.css';
 
-const cutoffTime = moment.duration(16, 'hours');
 
-function makeGraphData(data, annotationFrequency: number = 1) {
-  return data.filter((item) => {
-    return new Date(item.time * 1000) > new Date();
-  }).filter((item) => {
-    const cutoff = moment().add(cutoffTime);
-    const itemTime = moment.unix(item.time);
-    return itemTime.isBefore(cutoff);
-  }).map((item, index) => {
-    const showAnnotation = index % annotationFrequency === 0;
-    return [
-      new Date(item.time * 1000),
-      item.temperature,
-      showAnnotation ? Math.round(item.temperature) : '',
-      showAnnotation ? item.temperature : '',
-    ];
-  });
+function createRechartData(data) {
+  const cutoff = moment().subtract(16, 'hours');
+  return data.filter((element) => moment.unix(element.time).isAfter(cutoff))
+      .map((element) => createRechartDataPoint(element));
 }
 
-function makeGraphHeaders() {
-  return [
-    {type: 'date'},
-    'y',
-    {role: 'annotation', type: 'string'},
-    {role: 'annotationText', type: 'string'},
-  ];
-}
-
-function makeGraphOptions(gridLines: number) {
-  const options = {
-    ...GraphOptions,
+function createRechartDataPoint(weatherDataPoint) {
+  return {
+    time: weatherDataPoint.time,
+    temp: weatherDataPoint.temperature.toFixed(0),
   };
-  options.hAxis.gridlines.count = gridLines;
-  return options;
+}
+
+function withDegree(temp) {
+  return temp + '˚';
 }
 
 export default function Graph() {
   const {weather, weatherError} = useContext(AppContext);
-  const isVerySmall = useMediaQuery({query: '(max-width: 400px)'});
   if (weatherError) {
     return (<div/>);
   } else if (!weather) {
@@ -53,17 +31,20 @@ export default function Graph() {
   }
 
   const hourly = weather.hourly.data;
-  const annotationFrequency = isVerySmall ? 2 : 1;
 
   return (
-    <div className="forecastGraph">
-      <Chart
-        width="100%"
-        chartType="AreaChart"
-        loader={<div>Loading Chart...</div>}
-        data={[makeGraphHeaders(), ...makeGraphData(hourly, annotationFrequency)]}
-        options={makeGraphOptions(6)}
-      />
-    </div>
+    <ResponsiveContainer className='forecastGraph' maxHeight='50%'>
+      <AreaChart margin={{top: 15, right: 30, left: 20, bottom: 5}} data={createRechartData(hourly)}>
+        <defs>
+          <linearGradient id="colorTemp" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#ffffff" stopOpacity={0.8}/>
+            <stop offset="95%" stopColor="#ffffff" stopOpacity={0.15}/>
+          </linearGradient>
+        </defs>
+        <XAxis interval={5} tickFormatter={(time) => moment.unix(time).format('hh:mm a')} dataKey='time'/>
+        <YAxis tickFormatter={(temp) => withDegree(temp)} dataKey='temp' />
+        <Area type='monotone' dataKey='temp' stroke='#ffffff' fillOpacity={1} fill="url(#colorTemp)"/>
+      </AreaChart>
+    </ResponsiveContainer>
   );
 }

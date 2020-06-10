@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.6.0",
+    "@types/recharts": "^1.8.11",
     "aws-lambda": "^1.0.5",
     "dark-sky": "^1.1.5",
     "dotenv": "^8.1.0",
@@ -32,6 +33,7 @@
     "react-scripts": "3.1.1",
     "react-text-transition": "^1.0.2",
     "react-textfit": "^1.1.0",
+    "recharts": "^1.8.5",
     "source-map-support": "^0.5.13",
     "suncalc2": "^1.8.1"
   },
