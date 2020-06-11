@@ -65,7 +65,7 @@ export default function Graph() {
           interval={1}
           minTickGap={2}
           stroke='#ffffff'
-          tick={{fontSize: 20}}
+          tick={{dx: 20, fontSize: 20}}
           tickSize={0}
           tickFormatter={(time) => moment.unix(time).format('h A')}
           dataKey='time' />
