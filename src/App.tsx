@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import './App.css';
 import './Preloader.css';
-import {useFetch} from "./util/Hooks";
+import {useFetch} from './util/Hooks';
 
 export const AppContext = createContext<Readonly<{
   weather?: any
