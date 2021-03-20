@@ -5,6 +5,7 @@ const limiter = require('lambda-rate-limiter')({
   interval: 60 * 60 * 1000,
   uniqueTokenPerInterval: 500,
 });
+
 require('dotenv').config();
 
 interface Coordinates {
@@ -34,11 +35,18 @@ export async function handler(event: APIGatewayEvent): Promise<any> {
 
   const body = JSON.parse(event.body || '');
   const coords: Coordinates = body as Coordinates;
-  const data = await getData(coords);
-  return {
-    statusCode: 200,
-    body: JSON.stringify(data),
-  };
+
+  if (coords.latitude === undefined || coords.longitude === undefined) {
+    return {
+      statusCode: 400,
+    };
+  } else {
+    const data = await getData(coords);
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data),
+    };
+  }
 }
 
 async function getData(coords: Coordinates): Promise<any> {
