@@ -6,3 +6,4 @@ package-lock.json
 yarn-error.log
 build/*
 .env
+src/react-app-env.d.ts
