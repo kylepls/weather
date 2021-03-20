@@ -12,7 +12,6 @@ export function useFetch(url: string, updateInterval: duration): [any, Error, bo
     if (positionError || loading) {
       return;
     }
-    console.log('GET ' + url);
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(position),
@@ -39,7 +38,7 @@ export function useInterval(callback: () => any, updateInterval: duration, start
     callback();
     const id = setInterval(callback, delay);
     return () => clearInterval(id);
-  }, [delay, start]);
+  }, [delay, start, callback]);
 }
 
 export interface Coordinates {
