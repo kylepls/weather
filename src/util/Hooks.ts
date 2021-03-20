@@ -3,7 +3,7 @@ import {parseInterval} from './timeutils';
 
 export type duration = string | number
 
-export function useFetch(url: string, updateInterval: duration): [any, Error, boolean] {
+export function useFetch(url: string, updateInterval: duration): [any, any | undefined, boolean] {
   const [json, setJson] = useState();
   const [fetchError, setFetchError] = useState();
   const [position, positionError, loading] = usePosition();
@@ -46,12 +46,14 @@ export interface Coordinates {
   longitude: number
 }
 
-export const usePosition = (): [Coordinates, Error, boolean] => {
-  const [coordinates, setCoordinates] = useState();
+// eslint-disable-next-line no-undef
+export const usePosition = (): [(Coordinates | null), (GeolocationPositionError | null), boolean] => {
+  const [coordinates, setCoordinates] = useState<Coordinates | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
-
-  const onChange = ({coords}: Position) => {
+  // eslint-disable-next-line no-undef
+  const [error, setError] = useState<GeolocationPositionError | null>(null);
+  // eslint-disable-next-line no-undef
+  const onChange = ({coords}: GeolocationPosition) => {
     setError(null);
     setLoading(false);
     setCoordinates({
@@ -59,7 +61,9 @@ export const usePosition = (): [Coordinates, Error, boolean] => {
       longitude: coords.longitude,
     });
   };
-  const onError = (error: PositionError) => {
+
+  // eslint-disable-next-line no-undef
+  const onError = (error: GeolocationPositionError) => {
     setError(error);
     setLoading(false);
   };

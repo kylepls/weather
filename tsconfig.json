@@ -15,7 +15,7 @@
     ],
     "strict": true,
     "noImplicitAny": false,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "noEmit": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
@@ -27,7 +27,8 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src/**/*.ts"
