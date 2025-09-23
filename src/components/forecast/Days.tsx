@@ -3,6 +3,7 @@ import {AppContext} from 'App';
 import moment from 'moment';
 import {useMediaQuery} from 'react-responsive';
 import './Days.css';
+import {Skycons, SkyconsType} from 'react-skycons';
 
 export default function Days() {
   const [days, error] = useData(7);
@@ -28,17 +29,22 @@ export default function Days() {
 function PredictionDay({data}) {
   const isSmall = useMediaQuery({query: '(max-width: 900px)'});
   const isVerySmall = useMediaQuery({query: '(max-width: 400px)'});
+  // <img className="dayIcon" alt="icon" src={`https://darksky.net/images/weather-icons/${data.icon}.png`}/>
   return (
     <div className="predictionDay">
-      <span className="dayName">{moment.unix(data.time).format( isSmall ? 'ddd' : 'dddd')}</span>
+      <span className="dayName">{moment.unix(data.time).format(isSmall ? 'ddd' : 'dddd')}</span>
       <br/>
-      <img className="dayIcon" alt="icon"
-        src={`https://darksky.net/images/weather-icons/${data.icon}.png`}/>
+      <Skycons
+        style={{
+          margin: '1em',
+        }}
+        size={80}
+        color="white" type={data.icon.toString().toUpperCase().replace(/-/g, '_') as SkyconsType}/>
       <br/>
       <p className="tempString">
         <span className="dayTempMax">{Math.round(data.temperatureHigh)}</span>
         {
-          isVerySmall? <></> :
+          isVerySmall ? <></> :
             <>
               &nbsp;
               <span className="dayTempMin">{Math.round(data.temperatureLow)}</span>
