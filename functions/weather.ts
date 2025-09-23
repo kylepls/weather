@@ -1,6 +1,6 @@
 import {APIGatewayEvent} from 'aws-lambda';
+import {DarkSky} from './dark-sky';
 
-const DarkSky = require('dark-sky');
 const limiter = require('lambda-rate-limiter')({
   interval: 60 * 60 * 1000,
   uniqueTokenPerInterval: 500,

@@ -30,6 +30,7 @@
     "react-responsive": "^8.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "4.0.3",
+    "react-skycons": "^0.8.8",
     "react-text-transition": "^1.0.2",
     "react-textfit": "^1.1.0",
     "source-map-support": "^0.5.13",
